@@ -1,0 +1,1 @@
+# GridManager Angular 1.x
