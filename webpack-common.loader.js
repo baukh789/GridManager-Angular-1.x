@@ -14,7 +14,10 @@ module.exports = (srcCodeDir, idDev) => {
 		},
 		{
 			test: /\.(sc|c)ss$/,
-			use: 'css-loader'
+			use: [
+				{ loader: "style-loader" },
+				{ loader: "css-loader" }
+			]
 		}
 	]
 };

@@ -17,20 +17,18 @@ const config = {
 		extensions: [".js"] //当requrie的模块找不到时,添加这些后缀
 	},
 
+	// 自动补全loader
+	resolveLoader: {
+		moduleExtensions: ['-loader']
+	},
+
+
 	// 文件导出的配置
 	output:{
 		// path: '/' ,
 		filename: "js/gm-angular-1.x.js",
 		// publicPath 对于热替换（HMR）是必须的，让webpack知道在哪里载入热更新的模块（chunk）
 		publicPath: "/"
-	},
-
-	resolve: {
-		extensions: ['.js']
-	},
-	
-	resolveLoader: {
-		moduleExtensions: ['-loader']
 	},
 
 	// 处理项目中的不同类型的模块

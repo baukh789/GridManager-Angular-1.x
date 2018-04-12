@@ -18,7 +18,12 @@ const config = {
 
 	// 配置模块如何解析
 	resolve:{
-		extensions: [".js"] // 当requrie的模块找不到时,添加这些后缀
+		extensions: [".js"] //当requrie的模块找不到时,添加这些后缀
+	},
+
+	// 自动补全loader
+	resolveLoader: {
+		moduleExtensions: ['-loader']
 	},
 
 	// 文件导出的配置
@@ -26,6 +31,7 @@ const config = {
 		path: buildPath ,
 		filename: "js/gm-angular-1.x.js"
 	},
+
 	// 以插件形式定制webpack构建过程
 	plugins: [
 		// 将文件复制到构建目录
@@ -44,7 +50,6 @@ const config = {
 		// 	sourceMap: false // 是否生成map文件
 		// })
 	],
-
 
 	// 处理项目中的不同类型的模块。
 	module: {
