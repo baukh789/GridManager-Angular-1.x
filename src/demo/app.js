@@ -2,7 +2,7 @@
  * Created by baukh on 18/4/11.
  */
 var app = angular.module("myApp", ['gridManagerModule']);
-app.controller('AppController', function($scope){
+app.controller('AppController', $scope => {
     var queryInfo = {pluginId: 1};
     $scope.option = {
         gridManagerName: 'testAngular',
@@ -21,15 +21,14 @@ app.controller('AppController', function($scope){
             text: '分类',
             isShow: false,
             template: function(type, rowObject){
-                return `
-							<select>
-								<option value="1" ${type === 1 ? 'selected="selected"' : ''}>前端框架、插件</option>
-								<option value="2" ${type === 2 ? 'selected="selected"' : ''}>javaScript相关链接</option>
-								<option value="3" ${type === 3 ? 'selected="selected"' : ''}>css相关链接</option>
-								<option value="4" ${type === 4 ? 'selected="selected"' : ''}>html相关链接</option>
-								<option value="4" ${type === 5 ? 'selected="selected"' : ''}>工具类相关链接</option>
-								<option value="4" ${type === 6 ? 'selected="selected"' : ''}>其它链接</option>
-							</select>`;
+                return `<select>
+                            <option value="1" ${type === 1 ? 'selected="selected"' : ''}>前端框架、插件</option>
+                            <option value="2" ${type === 2 ? 'selected="selected"' : ''}>javaScript相关链接</option>
+                            <option value="3" ${type === 3 ? 'selected="selected"' : ''}>css相关链接</option>
+                            <option value="4" ${type === 4 ? 'selected="selected"' : ''}>html相关链接</option>
+                            <option value="4" ${type === 5 ? 'selected="selected"' : ''}>工具类相关链接</option>
+                            <option value="4" ${type === 6 ? 'selected="selected"' : ''}>其它链接</option>
+                        </select>`;
             }
         },{
             key: 'info',

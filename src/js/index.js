@@ -10,7 +10,7 @@ export const GridManagerComponent = {
     template,
     controllerAs: 'vm',
     bindings: {
-        option: '<'
+        gmOption: '<'
     }
 };
 export default angular

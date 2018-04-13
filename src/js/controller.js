@@ -3,9 +3,12 @@
  */
 import '../../node_modules/gridmanager/js/gm';
 export default class GridManagerController {
-    constructor($scope, $element) {
-        var table = $element[0].querySelector('table');
-        table.GM(this.option);
+    constructor($element) {
+        this._$element = $element;
+    }
+    $onInit() {
+        var table = this._$element[0].querySelector('table');
+        table.GM(this.gmOption);
     }
 }
-GridManagerController.$inject = ['$scope', '$element'];
+GridManagerController.$inject = ['$element'];
