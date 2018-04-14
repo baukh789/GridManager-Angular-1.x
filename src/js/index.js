@@ -13,6 +13,7 @@ export const GridManagerComponent = {
         gmOption: '<'
     }
 };
+// TODO 需要对参数进行处理, 需要对公开方法进行处理
 export default angular
     .module('gridManagerModule', [])
     .component('gridManager', GridManagerComponent)

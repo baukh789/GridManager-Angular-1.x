@@ -74,4 +74,7 @@ app.controller('AppController', $scope => {
         query: queryInfo,
         pageSize: 20
     };
+
+
+    console.log(GM.version);
 });
