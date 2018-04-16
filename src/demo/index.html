@@ -3,15 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>gm-angular</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <script src="../js/gm-angular-1.x.js"></script>
+    <script src="app.js"></script>
 </head>
 <body ng-app="myApp">
+    <div class="search-area">
+        <div class="sa-ele">
+            <label class="se-title">名称:</label>
+            <input class="se-con" name="name"/>
+        </div>
+        <div class="sa-ele">
+            <label class="se-title">使用说明:</label>
+            <input class="se-con" name="info"/>
+        </div>
+        <div class="sa-ele">
+            <label class="se-title">url:</label>
+            <input class="se-con" name="url"/>
+        </div>
+        <div class="sa-ele">
+            <button class="search-action">搜索</button>
+            <button class="reset-action">重置</button>
+        </div>
+    </div>
+    <br/>
 
-<div ng-controller="AppController as vm">
-    <grid-manager gm-option="option"></grid-manager>
-</div>
-<!--引入angular 依赖-->
-<script src="../../node_modules/angular/angular.min.js"></script>
-<script src="../js/gm-angular-1.x.js"></script>
-<script src="app.js"></script>
+    <div ng-controller="AppController as vm">
+        <grid-manager gm-option="vm.option"></grid-manager>
+    </div>
+
+    <div class="bottom-bar">
+        <button id="init-gm" disabled>init</button>
+        <button id="destroy-gm" disabled>destroy</button>
+    </div>
 </body>
 </html>

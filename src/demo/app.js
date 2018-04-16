@@ -2,9 +2,9 @@
  * Created by baukh on 18/4/11.
  */
 var app = angular.module("myApp", ['gridManagerModule']);
-app.controller('AppController', $scope => {
+app.controller('AppController', function() {
     var queryInfo = {pluginId: 1};
-    $scope.option = {
+    this.option = {
         gridManagerName: 'testAngular',
         height: '400px',
         columnData: [{
@@ -20,7 +20,7 @@ app.controller('AppController', $scope => {
             remind: 'the type',
             text: '分类',
             isShow: false,
-            template: function(type, rowObject){
+            template: type => {
                 return `<select>
                             <option value="1" ${type === 1 ? 'selected="selected"' : ''}>前端框架、插件</option>
                             <option value="2" ${type === 2 ? 'selected="selected"' : ''}>javaScript相关链接</option>
@@ -61,7 +61,10 @@ app.controller('AppController', $scope => {
             remind: 'the action',
             width: '10%',
             text: `<div>操作</div>`,
-            template: function(action, rowObject){
+            template: (action, rowObject) =>{
+                // TODO 这里临时用window挂载了 this.delectRowData , 有时间了需要将这里改成angular方式.
+                console.log(this.delectRowData);
+                window.delectRowData = this.delectRowData;
                 return '<span class="plugin-action del-action" onclick="delectRowData(this)" learnLink-id="'+rowObject.id+'">删除</span>';
             }
         }],
@@ -76,5 +79,17 @@ app.controller('AppController', $scope => {
     };
 
 
-    console.log(GM.version);
+    // 删除功能
+    this.delectRowData = function(node) {
+        // 获取到当前的tr node
+        var tr = node.parentNode.parentNode;
+        // 获取到当前渲染tr 所使用的数据
+        var rowData = document.querySelector('table').GM('getRowData', tr);
+        // 执行删除操作
+        if(window.confirm('确认要删除['+rowData.name+']?')){
+            window.alert('当然这只是个示例,并不会真实删除,要不然每天我每天就光填demo数据了.');
+        }
+    }
+
+    
 });
