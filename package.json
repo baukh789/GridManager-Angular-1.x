@@ -1,6 +1,6 @@
 {
   "name": "gridmanager-angular-1.x",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "gridmanager by angular-1.x",
   "main": "index.js",
   "scripts": {
@@ -34,6 +34,6 @@
   "homepage": "https://github.com/baukh789/GridManager-Angular-1.x#readme",
   "dependencies": {
     "angular": "^1.5.8",
-    "gridmanager": "^2.5.3"
+    "gridmanager": "^2.5.4"
   }
 }

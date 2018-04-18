@@ -2,7 +2,7 @@
  * Created by baukh on 18/4/11.
  */
 var app = angular.module("myApp", ['gridManagerModule']);
-app.controller('AppController', function() {
+app.controller('AppController', ['$window', '$element', '$http', function($window, $element, $http) {
     var queryInfo = {pluginId: 1};
     this.option = {
         gridManagerName: 'testAngular',
@@ -60,12 +60,9 @@ app.controller('AppController', function() {
             key: 'action',
             remind: 'the action',
             width: '10%',
-            text: `<div>操作</div>`,
-            template: (action, rowObject) =>{
-                // TODO 这里临时用window挂载了 this.delectRowData , 有时间了需要将这里改成angular方式.
-                console.log(this.delectRowData);
-                window.delectRowData = this.delectRowData;
-                return '<span class="plugin-action del-action" onclick="delectRowData(this)" learnLink-id="'+rowObject.id+'">删除</span>';
+            text: '操作',
+            template: function(action, rowObject){
+                return '<span class="plugin-action del-action" row-id="'+rowObject.id+'" onclick="delectRowData(this)">删除</span>';
             }
         }],
         supportRemind: true,
@@ -78,18 +75,19 @@ app.controller('AppController', function() {
         pageSize: 20
     };
 
-
     // 删除功能
-    this.delectRowData = function(node) {
+    $window.delectRowData = function(node) {
         // 获取到当前的tr node
         var tr = node.parentNode.parentNode;
+        var table = $element[0].querySelector('table[grid-manager="testAngular"]');
         // 获取到当前渲染tr 所使用的数据
-        var rowData = document.querySelector('table').GM('getRowData', tr);
+        var rowData = table.GM('getRowData', tr);
         // 执行删除操作
         if(window.confirm('确认要删除['+rowData.name+']?')){
-            window.alert('当然这只是个示例,并不会真实删除,要不然每天我每天就光填demo数据了.');
+            console.log('----删除操作开始----');
+            table.GM('refreshGrid');
+            console.log('数据没变是正常的, 因为这只是个示例,并不会真实删除数据.');
+            console.log('----删除操作完成----');
         }
     }
-
-    
-});
+}]);
