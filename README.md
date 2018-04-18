@@ -1,4 +1,4 @@
-# GridManager Angular 1.x
+# GridManager Angular 1.x(开发中, 现仅作于参考)
 > 基于 Angular 1.x 的 GridManager 封装, 用于便捷的在Angular中使用GridManager.
 
 [![Build Status](https://travis-ci.org/baukh789/GridManager.svg?branch=master&style=flat-square)](https://travis-ci.org/baukh789/GridManager)
