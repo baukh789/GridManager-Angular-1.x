@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/baukh789/GridManager-Angular-1.x.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "baukh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/baukh789/GridManager-Angular-1.x/issues"
   },

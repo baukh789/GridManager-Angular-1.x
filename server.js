@@ -23,10 +23,10 @@ app.use(/\/$/, function (req, res) {
 // 配置资源路径√
 app.use(express.static(path.join(__dirname, 'src')));
 app.use(express.static(__dirname));
-app.listen(2018, function (err) {
+app.listen(3301, function (err) {
     if (err) {
         console.log(err);
         return;
     }
-    console.log('started at http://localhost:2018');
+    console.log('started at http://localhost:3301');
 });

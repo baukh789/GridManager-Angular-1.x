@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const genRules = require('./webpack-common.loader');
-const buildPath = path.join(__dirname, "build");
+const buildPath = path.join(__dirname, "dist");
 
 const config = {
 
