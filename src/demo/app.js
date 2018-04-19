@@ -13,7 +13,6 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
             width: '100px',
             align: 'right',
             text: '名称',
-            isShow: false,
             sorting: ''
         },{
             key: 'type',
@@ -33,17 +32,28 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
         },{
             key: 'info',
             remind: 'the info',
+            isShow: false,
             text: '使用说明'
         },{
             key: 'url',
             remind: 'the url',
-            text: 'url'
+            text: 'url',
+            // 使用函数返回 dom node
+            template: function(url) {
+                var urlNode = document.createElement('a');
+                urlNode.setAttribute('href', url);
+                urlNode.setAttribute('title', url);
+                urlNode.setAttribute('target', '_blank');
+                urlNode.innerText = url;
+                return urlNode;
+            }
         },{
             key: 'createDate',
             remind: 'the createDate',
             width: '100px',
             text: '创建时间',
             sorting: 'DESC',
+            // 使用函数返回 htmlString
             template: function(createDate, rowObject){
                 return new Date(createDate).toLocaleDateString();
             }
@@ -53,6 +63,7 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
             width: '100px',
             text: '最后修改时间',
             sorting: '',
+            // 使用函数返回 htmlString
             template: function(lastDate, rowObject){
                 return new Date(lastDate).toLocaleDateString();
             }
