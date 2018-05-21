@@ -10,7 +10,8 @@ export const GridManagerComponent = {
     template,
     controllerAs: 'vm',
     bindings: {
-        gmOption: '<'
+        gmOption: '<',
+        gmScope: '<'
     }
 };
 // TODO 需要对参数进行处理, 需要对公开方法进行处理
