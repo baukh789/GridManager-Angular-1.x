@@ -31,7 +31,6 @@
     "webpack": "2.7.0",
     "webpack-dev-middleware": "^2.0.4"
   },
-  "homepage": "https://github.com/baukh789/GridManager-Angular-1.x#readme",
   "dependencies": {
     "angular": "^1.5.8",
     "gridmanager": "^2.5.5"
