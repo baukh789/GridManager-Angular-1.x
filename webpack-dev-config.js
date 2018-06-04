@@ -9,7 +9,7 @@ const config = {
 
 	// 入口文件配置
 	entry: {
-		js: './js/index.js'
+		js: './demo/app.js'
 	},
 
 	// 配置模块如何解析
@@ -26,7 +26,7 @@ const config = {
 	// 文件导出的配置
 	output:{
 		// path: '/' ,
-		filename: "js/gm-angular-1.x.js",
+		filename: "js/app.js",
 		// publicPath 对于热替换（HMR）是必须的，让webpack知道在哪里载入热更新的模块（chunk）
 		publicPath: "/"
 	},

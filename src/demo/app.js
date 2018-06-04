@@ -1,7 +1,9 @@
 /**
  * Created by baukh on 18/4/11.
  */
-var app = angular.module("myApp", ['gridManagerModule']);
+import gridManagerModule from '../js/index';
+
+var app = angular.module("myApp", [gridManagerModule]);
 app.controller('AppController', ['$window', '$element', '$http', function($window, $element, $http) {
     var queryInfo = {pluginId: 1};
     this.option = {
@@ -80,7 +82,7 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
         isCombSorting:  true,
         supportAjaxPage: true,
         supportSorting: true,
-        ajax_url: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList',
+        ajax_data: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList',
         ajax_type: 'POST',
         query: queryInfo,
         pageSize: 20
