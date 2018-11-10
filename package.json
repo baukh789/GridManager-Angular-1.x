@@ -32,7 +32,10 @@
     "webpack-dev-middleware": "^2.0.4"
   },
   "dependencies": {
-    "angular": "^1.5.8",
-    "gridmanager": "^2.5.5"
+    "angular": "^1.7.5",
+    "angular-resource": "^1.7.5",
+    "angular-ui-router": "^1.0.20",
+    "ccms-components": "^2.35.12",
+    "gridmanager": "^2.6.12"
   }
 }

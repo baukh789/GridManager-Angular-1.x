@@ -3,10 +3,23 @@
  */
 import gridManagerModule from '../js/index';
 
+
 var app = angular.module("myApp", [gridManagerModule]);
-app.controller('AppController', ['$window', '$element', '$http', function($window, $element, $http) {
+app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', function($window, $rootScope, $scope, $element) {
     var queryInfo = {pluginId: 1};
-    this.option = {
+    $scope.a = 11233;
+
+    // 常量: 搜索条件
+    $scope.TYPE_MAP = {
+        '1': 'HTML/CSS',
+        '2': 'nodeJS',
+        '3': 'javaScript',
+        '4': '前端鸡汤',
+        '5': 'PM Coffee',
+        '6': '前端框架',
+        '7': '前端相关'
+    };
+    $scope.option = {
         gridManagerName: 'testAngular',
         height: '400px',
         columnData: [{
@@ -19,17 +32,13 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
         },{
             key: 'type',
             remind: 'the type',
-            text: '分类',
-            isShow: false,
+            text: '<div>{{a}}</div>',
+            // isShow: false,
+            useCompile: true,
             template: type => {
-                return `<select>
-                            <option value="1" ${type === 1 ? 'selected="selected"' : ''}>前端框架、插件</option>
-                            <option value="2" ${type === 2 ? 'selected="selected"' : ''}>javaScript相关链接</option>
-                            <option value="3" ${type === 3 ? 'selected="selected"' : ''}>css相关链接</option>
-                            <option value="4" ${type === 4 ? 'selected="selected"' : ''}>html相关链接</option>
-                            <option value="4" ${type === 5 ? 'selected="selected"' : ''}>工具类相关链接</option>
-                            <option value="4" ${type === 6 ? 'selected="selected"' : ''}>其它链接</option>
-                        </select>`;
+                console.log(type);
+                return `<button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" style="margin-top: 50px" ng-bind="TYPE_MAP[1]"></button>`;
+                // return `<div>{{TYPE_MAP[row.type]}}</div>`;
             }
         },{
             key: 'info',
@@ -88,7 +97,7 @@ app.controller('AppController', ['$window', '$element', '$http', function($windo
         pageSize: 20
     };
 
-    this.delectRowData = function(row) {
+    $scope.delectRowData = function(row) {
         var table = $element[0].querySelector('table[grid-manager="testAngular"]');
         if(window.confirm('确认要删除['+row.name+']?')){
             console.log('----删除操作开始----');
