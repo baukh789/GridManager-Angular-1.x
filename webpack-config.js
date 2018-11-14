@@ -2,14 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const genRules = require('./webpack-common.loader');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const buildPath = path.join(__dirname, "dist");
 
 const config = {
 
 	// 入口文件所在的上下文
 	context: path.join(__dirname, "src/"),
-
-	devtool: 'source-map',
 
 	// 入口文件配置
 	entry: {
@@ -29,15 +28,25 @@ const config = {
 	// 文件导出的配置
 	output:{
 		path: buildPath ,
-		filename: "js/gm-angular-1.x.js"
+		filename: "js/gm-angular.js"
 	},
 
 	// 以插件形式定制webpack构建过程
 	plugins: [
+        // 将样式文件 抽取至独立文件内
+        new ExtractTextWebpackPlugin({
+            // 生成文件的文件名
+            filename: 'css/gm-angular.css',
+
+            // 是否禁用插件
+            disable: false,
+
+            // 是否向所有额外的 chunk 提取（默认只提取初始加载模块）
+            allChunks: true
+        }),
 		// 将文件复制到构建目录
 		// CopyWebpackPlugin-> https://github.com/webpack-contrib/copy-webpack-plugin
 		new CopyWebpackPlugin([
-			{from: __dirname + '/src/demo', to: 'demo'},
 			{from: path.join(__dirname, '/package.json'), to: '', toType: 'file'},
 			{from: path.join(__dirname, '/README.md'), to: '', toType: 'file'}
 		]),

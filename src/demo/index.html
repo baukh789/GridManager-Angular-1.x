@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="../../node_modules/ccms-components/ccms-components.css">
     <script src="../../node_modules/angular/angular.min.js"></script>
     <script src="../../node_modules/ccms-components/ccms-components.js"></script>
-    <script src="/js/app.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="/webpack-dev-file/css/gm-angular.css"/>
+    <script src="/webpack-dev-file/js/gm-angular.js"></script>
+    <style>
+        .grid-main {
+            height: calc(100vh - 64px - 57px);
+        }
+    </style>
 </head>
 <body ng-app="myApp">
     <div class="search-area">
@@ -30,13 +37,15 @@
     </div>
     <br/>
 
-    <div ng-controller="AppController as vm">
-        <grid-manager gm-option="option" gm-scope="vm"></grid-manager>
+    <div class="grid-main" ng-controller="AppController as vm">
+        <grid-manager option="option"></grid-manager>
     </div>
 
     <div class="bottom-bar">
         <button id="init-gm" disabled>init</button>
         <button id="destroy-gm" disabled>destroy</button>
+        <a href="https://github.com/baukh789/GridManager-Angular-1.x/blob/master/src/demo/index.html" target="_blank">查看源码</a>
     </div>
+
 </body>
 </html>
