@@ -14,10 +14,7 @@ export default class GridManagerController {
 
         const table = this._$element[0].querySelector('table');
 
-        var i = 0;
         this.option.compileAngularjs = compileList => {
-            // TODO 这里明天需要处理一下， gm内部的 compileList不再以td为单位，而是以tr为单位
-            console.log(compileList);
             compileList.forEach(item => {
                 const elScope = _parent.$new(false);
                 elScope.row = item.row;

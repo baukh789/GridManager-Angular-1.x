@@ -14,6 +14,19 @@
         .grid-main {
             height: calc(100vh - 64px - 57px);
         }
+        table[grid-manager="testAngular"] th{
+            padding: 0;
+        }
+        table[grid-manager="testAngular"] th .th-wrap{
+            padding: 0 !important;
+        }
+
+        table[grid-manager="testAngular"] .ffff{
+            display: flex;
+        }
+        table[grid-manager="testAngular"] .ffff p{
+            flex-basis: 33%;
+        }
     </style>
 </head>
 <body ng-app="myApp">

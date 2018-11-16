@@ -111,7 +111,6 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                     isMultiple: true
                 },
                 // isShow: false,
-                useCompile: true,
                 template: () => {
                     return `<button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`;
                 }
