@@ -2,8 +2,6 @@
  * Created by baukh on 18/4/11.
  */
 import gridManagerModule from '../js/index';
-
-
 var app = angular.module("myApp", [gridManagerModule]);
 app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', function($window, $rootScope, $scope, $element) {
     $scope.testClick = (row) => {
@@ -75,16 +73,9 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 align: 'left',
                 text: '标题',
                 sorting: '',
-                // 使用函数返回 dom node
-                template: function(title, rowObject) {
-                    var titleNode = document.createElement('a');
-                    titleNode.setAttribute('href', `https://www.lovejavascript.com/#!zone/blog/content.html?id=${rowObject.id}`);
-                    titleNode.setAttribute('title', title);
-                    titleNode.setAttribute('target', '_blank');
-                    titleNode.innerText = title;
-                    titleNode.title = `点击阅读[${rowObject.title}]`;
-                    titleNode.classList.add('plugin-action');
-                    return titleNode;
+                // 使用函数返回 ng template
+                template: function() {
+                    return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>';
                 }
             },{
                 key: 'type',
@@ -111,7 +102,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                     isMultiple: true
                 },
                 // isShow: false,
-                template: () => {
+                template: function() {
                     return `<button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`;
                 }
             },{
@@ -125,6 +116,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 align: 'center',
                 width: '100px',
                 text: '作者',
+                // 使用函数返回 dom string
                 template: function(username){
                     return `<a class="plugin-action" href="https://github.com/baukh789" target="_blank" title="去看看${username}的github">${username}</a>`;
                 }
