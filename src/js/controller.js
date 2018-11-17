@@ -3,8 +3,9 @@
  */
 import '../../node_modules/gridmanager/js/gm';
 export default class GridManagerController {
-    constructor($scope, $element, $compile) {
+    constructor($scope, $document, $element, $compile) {
         this._$element = $element;
+        this._$document = $document;
         this._$compile = $compile;
         this._$scope = $scope;
     }
@@ -32,5 +33,16 @@ export default class GridManagerController {
         table.GM(this.option);
         GM.setScope(table, _parent);
     }
+
+    /**
+     * 销毁钩子
+     */
+    $onDestroy() {
+        // 清除右键菜单
+        const menuDomList = this._$document[0].querySelectorAll('.grid-menu[grid-master]');
+        [].forEach.call(menuDomList, menuDom => {
+            menuDom.parentNode.removeChild(menuDom);
+        });
+    }
 }
-GridManagerController.$inject = ['$scope', '$element', '$compile'];
+GridManagerController.$inject = ['$scope', '$document', '$element', '$compile'];
