@@ -34,13 +34,13 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
 
         // 指定接口返回无总页数据，这个参数仅是demo演示所需的数据，配置是否使用无总页模式的字段为: useNoTotalsMode
         query: {noTotals: true},
-        topFullColumn: {
-            template: function(row){
-                return `<div style="padding: 12px; text-align: center;">
-                                    快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源, <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>github
-                                </div>`;
-            }
-        },
+        // topFullColumn: {
+        //     template: function(row){
+        //         return `<div style="padding: 12px; text-align: center;">
+        //                             快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源, <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>github
+        //                         </div>`;
+        //     }
+        // },
         columnData: [
             {
                 key: 'pic',
