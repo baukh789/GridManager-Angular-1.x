@@ -46,6 +46,11 @@ export default angular
 ```javascript
 export default class CustomerInfoCtrl {
 	constructor() {
+	    this.delectRowData() => {
+	        console.log('删除成功');
+	    };
+
+	    // 表格所需配置项
 	    this.gmOptions = {
 	        // 当前表格的key, 必须存在，且同一页面中不能存在相同值
             gridManagerName: 'test',
@@ -91,9 +96,7 @@ export default class CustomerInfoCtrl {
                     text: '标题',
                     sorting: '',
                     // 使用函数返回 ng template
-                    template: function() {
-                        return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>';
-                    }
+                    template: '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>'
                 },{
                     key: 'type',
                     remind: 'the type',
@@ -118,10 +121,7 @@ export default class CustomerInfoCtrl {
                         // 否为多选, 布尔值, 默认为false。非必设项
                         isMultiple: true
                     },
-                    // isShow: false,
-                    template: function() {
-                        return `<button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`;
-                    }
+                    template: <button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>
                 },{
                     key: 'info',
                     remind: 'the info',
@@ -133,10 +133,7 @@ export default class CustomerInfoCtrl {
                     align: 'center',
                     width: '100px',
                     text: '作者',
-                    // 使用函数返回 dom string
-                    template: function(username){
-                        return `<a class="plugin-action" href="https://github.com/baukh789" target="_blank" title="去看看${username}的github">${username}</a>`;
-                    }
+                    template: '<a class="plugin-action" ng-href="https://github.com/{{row.username}}" target="_blank" title="去看看{{username}}的github">{{username}}</a>'
                 },{
                     key: 'createDate',
                     width: '130px',
@@ -161,8 +158,7 @@ export default class CustomerInfoCtrl {
                     width: '100px',
                     align: 'center',
                     text: '<span style="color: red">操作</span>',
-                    // 直接返回 htmlString
-                    template: '<span class="plugin-action" gm-click="delectRowData">删除</span>'
+                    template: '<span class="plugin-action" ng-click="$ctrl.delectRowData()">删除</span>'
                 }
             ]
             // ...更多配置请参考API
