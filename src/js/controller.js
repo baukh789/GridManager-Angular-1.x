@@ -19,6 +19,7 @@ export default class GridManagerController {
             compileList.forEach(item => {
                 const elScope = _parent.$new(false);
                 elScope.row = item.row;
+                elScope.index = item.index;
                 const content = this._$compile(item.el)(elScope);
 
                 item.el.replaceWith(content[0]);

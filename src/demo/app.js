@@ -30,10 +30,10 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         ajax_type: 'POST',
 
         // 使用无总页模式
-        useNoTotalsMode: true,
+        // useNoTotalsMode: true,
 
         // 指定接口返回无总页数据，这个参数仅是demo演示所需的数据，配置是否使用无总页模式的字段为: useNoTotalsMode
-        query: {noTotals: true},
+        // query: {noTotals: true},
         // topFullColumn: {
         //     template: function(row){
         //         return `<div style="padding: 12px; text-align: center;">
@@ -48,25 +48,10 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 width: '110px',
                 align: 'center',
                 text: '缩略图',
-                // 使用函数返回 dom node
-                template: function(pic, rowObject) {
-                    var picNode = document.createElement('a');
-                    picNode.setAttribute('href', `https://www.lovejavascript.com/#!zone/blog/content.html?id=${rowObject.id}`);
-                    picNode.setAttribute('title', rowObject.title);
-                    picNode.setAttribute('target', '_blank');
-                    picNode.title = `点击阅读[${rowObject.title}]`;
-                    picNode.style.display = 'block';
-                    picNode.style.height = '58.5px';
-
-                    var imgNode = document.createElement('img');
-                    imgNode.style.width = '90px';
-                    imgNode.style.margin = '0 auto';
-                    imgNode.alt = rowObject.title;
-                    imgNode.src = `https://www.lovejavascript.com/${pic}`;
-
-                    picNode.appendChild(imgNode);
-                    return picNode;
-                }
+                // ng template
+                template: `<a target="_blank" style="display:block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
+                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}" alt="{{row.title}}">
+                            </a>`
             },{
                 key: 'title',
                 remind: 'the title',
@@ -102,9 +87,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                     isMultiple: true
                 },
                 // isShow: false,
-                template: function() {
-                    return `<button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`;
-                }
+                template: `<button type="button" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`
             },{
                 key: 'info',
                 remind: 'the info',
@@ -117,9 +100,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 width: '100px',
                 text: '作者',
                 // 使用函数返回 dom string
-                template: function(username){
-                    return `<a class="plugin-action" href="https://github.com/baukh789" target="_blank" title="去看看${username}的github">${username}</a>`;
-                }
+                template: `<a class="plugin-action" href="https://github.com/baukh789" target="_blank" title="去看看{{row.username}}的github">{{row.username}}</a>`
             },{
                 key: 'createDate',
                 width: '130px',
@@ -145,16 +126,20 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 align: 'center',
                 text: '<span style="color: red">操作</span>',
                 // 直接返回 htmlString
-                template: '<span class="plugin-action" gm-click="delectRowData">删除</span>'
+                template: '<span class="plugin-action" ng-click="delectRowData(row, index)">删除</span>'
             }
         ]
     };
 
-    $scope.delectRowData = function(row) {
-        var table = $element[0].querySelector('table[grid-manager="testAngular"]');
-        if(window.confirm('确认要删除['+row.name+']?')){
+    /**
+     * 模拟删除
+     * @param row
+     * @param index
+     */
+    $scope.delectRowData = function(row, index) {
+        if(window.confirm(`确认要删除当前页第[${index}]条的['${row.title}]?`)){
             console.log('----删除操作开始----');
-            table.GM('refreshGrid');
+            $element[0].querySelector('table[grid-manager="testAngular"]').GM('refreshGrid');
             console.log('数据没变是正常的, 因为这只是个示例,并不会真实删除数据.');
             console.log('----删除操作完成----');
         }

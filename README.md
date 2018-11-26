@@ -158,7 +158,7 @@ export default class CustomerInfoCtrl {
                     width: '100px',
                     align: 'center',
                     text: '<span style="color: red">操作</span>',
-                    template: '<span class="plugin-action" ng-click="$ctrl.delectRowData()">删除</span>'
+                    template: '<span class="plugin-action" ng-click="$ctrl.delectRowData(row, index)">删除</span>'
                 }
             ]
             // ...更多配置请参考API
