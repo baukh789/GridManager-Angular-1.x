@@ -16,18 +16,21 @@ export default class GridManagerController {
         const table = this._$element[0].querySelector('table');
 
         this.option.compileAngularjs = compileList => {
-            compileList.forEach(item => {
-                const elScope = _parent.$new(false);
-                elScope.row = item.row;
-                elScope.index = item.index;
-                const content = this._$compile(item.el)(elScope);
+            return new Promise((resolve, reject) => {
+                compileList.forEach(item => {
+                    const elScope = _parent.$new(false);
+                    elScope.row = item.row;
+                    elScope.index = item.index;
+                    const content = this._$compile(item.el)(elScope);
 
-                item.el.replaceWith(content[0]);
-            });
+                    item.el.replaceWith(content[0]);
+                });
 
-            // 延时触发angular 脏检查
-            setTimeout(() => {
-                _parent.$digest();
+                // 延时触发angular 脏检查
+                setTimeout(() => {
+                    _parent.$digest();
+                    resolve();
+                });
             });
         };
 
