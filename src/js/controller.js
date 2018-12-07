@@ -16,7 +16,7 @@ export default class GridManagerController {
         const table = this._$element[0].querySelector('table');
 
         this.option.compileAngularjs = compileList => {
-            return new Promise((resolve, reject) => {
+            return new Promise(resolve => {
                 compileList.forEach(item => {
                     const elScope = _parent.$new(false);
                     elScope.row = item.row;
