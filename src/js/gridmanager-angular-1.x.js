@@ -17,4 +17,5 @@ export const GridManagerComponent = {
 export default angular
     .module('gridManagerAngular', [])
     .component('gridManager', GridManagerComponent)
+    .value('$gridManager', window.GridManager)
     .name;

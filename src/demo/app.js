@@ -3,7 +3,7 @@
  */
 import gridManagerModule from '../js/index';
 var app = angular.module("myApp", [gridManagerModule]);
-app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', function($window, $rootScope, $scope, $element) {
+app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', '$gridManager', function($window, $rootScope, $scope, $element, $gridManager) {
     $scope.testClick = (row) => {
         console.log('click', row);
     };
@@ -139,7 +139,8 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
     $scope.delectRowData = function(row, index) {
         if(window.confirm(`确认要删除当前页第[${index}]条的['${row.title}]?`)){
             console.log('----删除操作开始----');
-            $element[0].querySelector('table[grid-manager="testAngular"]').GM('refreshGrid');
+            $gridManager.refreshGrid('testAngular');
+            // $element[0].querySelector('table[grid-manager="testAngular"]').GM('refreshGrid');
             console.log('数据没变是正常的, 因为这只是个示例,并不会真实删除数据.');
             console.log('----删除操作完成----');
         }

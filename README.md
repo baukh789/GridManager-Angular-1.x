@@ -181,6 +181,10 @@ table.GM('refreshGrid');
 // 更新查询条件
 table.GM('setQuery', {name: 'baukh'});
 
+const tableCtrl = function(){
+
+}
+
 // ...其它更多请直接访问API
 ```
 
