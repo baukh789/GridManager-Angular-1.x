@@ -1,8 +1,7 @@
 import gridManagerAngular from './gridmanager-angular-1.x';
 
-import { version } from '../../package.json';
 const gridManager = angular.module('gridManager', [gridManagerAngular]);
 
-gridManager.version = version;
+gridManager.version = process.env.VERSION;
 
 export default gridManager.name;

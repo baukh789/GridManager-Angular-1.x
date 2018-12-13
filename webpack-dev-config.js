@@ -1,6 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const genRules = require('./webpack-common.loader');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const { version } = require('./package.json');
+
 const config = {
 	// map
 	devtool : 'source-map',  // TODO  http://www.css88.com/doc/webpack2/configuration/devtool/
@@ -30,7 +33,14 @@ const config = {
             filename: 'webpack-dev-file/css/gm-angular.css',
             disable: false,
             allChunks: true
-        })
+        }),
+
+        // 配置环境变量
+        new webpack.DefinePlugin({
+            'process.env': {
+                VERSION: JSON.stringify(version),
+            }
+        }),
     ],
 
 	// 文件导出的配置

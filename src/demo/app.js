@@ -24,6 +24,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         height: '100%',
         supportAjaxPage:true,
         isCombSorting: true,
+        disableCache: false,
         ajax_data: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
