@@ -34,7 +34,9 @@ export default class GridManagerController {
             });
         };
 
-        table.GM(this.option);
+        table.GM(this.option, query => {
+            this.callback({query: query});
+        });
         GM.setScope(table, _parent);
     }
 

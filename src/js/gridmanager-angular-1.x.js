@@ -10,7 +10,8 @@ export const GridManagerComponent = {
     template,
     controllerAs: 'vm',
     bindings: {
-        option: '<'
+        option: '<',
+        callback: '&'
     }
 };
 

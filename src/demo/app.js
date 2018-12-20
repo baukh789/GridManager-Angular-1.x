@@ -18,6 +18,13 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         '6': '前端框架',
         '7': '前端相关'
     };
+
+    // 表格渲染回调函数
+    // query为gmOptions中配置的query
+    $scope.callback = function(query) {
+        console.log('callback => ', query);
+    };
+
     $scope.option = {
         gridManagerName: 'testAngular',
         width: '100%',

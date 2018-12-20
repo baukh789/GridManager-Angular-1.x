@@ -40,7 +40,7 @@ export default angular
 
 ### 示例
 ```html
-<grid-manager option="$ctrl.gmOptions"></grid-manager>
+<grid-manager option="$ctrl.gmOptions" callback="$ctrl.gmCallback(query)"></grid-manager>
 ```
 
 ```javascript
@@ -49,6 +49,12 @@ export default class CustomerInfoCtrl {
 	    this.delectRowData() => {
 	        console.log('删除成功');
 	    };
+
+        // 表格渲染回调函数
+        // query为gmOptions中配置的query
+        this.gmCallback = query => {
+            console.log(query);
+        };
 
 	    // 表格所需配置项
 	    this.gmOptions = {
