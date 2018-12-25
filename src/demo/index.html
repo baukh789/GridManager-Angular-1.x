@@ -14,28 +14,24 @@
         }
     </style>
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="AppController as vm">
     <div class="search-area">
         <div class="sa-ele">
             <label class="se-title">名称:</label>
-            <input class="se-con" name="name"/>
+            <input class="se-con" ng-model="searchForm.title"/>
         </div>
         <div class="sa-ele">
             <label class="se-title">使用说明:</label>
-            <input class="se-con" name="info"/>
+            <input class="se-con" ng-model="searchForm.info"/>
         </div>
         <div class="sa-ele">
-            <label class="se-title">url:</label>
-            <input class="se-con" name="url"/>
-        </div>
-        <div class="sa-ele">
-            <button class="search-action">搜索</button>
-            <button class="reset-action">重置</button>
+            <button class="search-action" ng-click="onSearch()">搜索</button>
+            <button class="reset-action" ng-click="onReset()">重置</button>
         </div>
     </div>
     <br/>
 
-    <div class="grid-main" ng-controller="AppController as vm">
+    <div class="grid-main">
         <grid-manager option="option" callback="callback(query)"></grid-manager>
     </div>
 

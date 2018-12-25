@@ -1,11 +1,13 @@
 /**
  * Created by baukh on 18/3/8.
  */
-import '../../node_modules/gridmanager/css/gm.css';
+import 'gridmanager';
+import 'gridmanager/css/gm.css';
+
 import controller from './controller';
 
 const template = '<table></table>';
-export const GridManagerComponent = {
+const GridManagerComponent = {
     controller,
     template,
     controllerAs: 'vm',

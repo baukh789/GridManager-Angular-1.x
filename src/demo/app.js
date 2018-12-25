@@ -19,6 +19,26 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         '7': '前端相关'
     };
 
+    $scope.searchForm = {
+        title: '',
+        info: ''
+    };
+
+    /**
+     * 搜索事件
+     */
+    $scope.onSearch = () => {
+        console.log('onSearch');
+        $gridManager.setQuery('testAngular', $scope.searchForm);
+    };
+
+    $scope.onReset = () => {
+        $scope.searchForm = {
+            title: '',
+            info: ''
+        };
+    };
+
     // 表格渲染回调函数
     // query为gmOptions中配置的query
     $scope.callback = function(query) {

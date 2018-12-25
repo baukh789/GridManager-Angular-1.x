@@ -1,7 +1,32 @@
-import gridManagerAngular from './gridmanager-angular-1.x';
+// import 'gridmanager';
+// import 'gridmanager/css/gm.css';
 
-const gridManager = angular.module('gridManager', [gridManagerAngular]);
+import controller from './controller';
 
-gridManager.version = process.env.VERSION;
+const template = '<table></table>';
+const GridManagerComponent = {
+    controller,
+    template,
+    controllerAs: 'vm',
+    bindings: {
+        option: '<',
+        callback: '&'
+    }
+};
+let name = null;
+try {
+    name = angular.module('gridManager');
+} catch (e) {
+    require('gridmanager');
+    require('gridmanager/css/gm.css');
+    const gridManager = angular.module('gridManager', []);
 
-export default gridManager.name;
+    name = gridManager
+        .component('gridManager', GridManagerComponent)
+        .value('$gridManager', window.GridManager)
+        .name;
+
+    gridManager.version = process.env.VERSION;
+}
+
+export default name;

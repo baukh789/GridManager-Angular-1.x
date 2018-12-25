@@ -1,13 +1,13 @@
 /**
  * Created by baukh on 18/3/8.
  */
-import '../../node_modules/gridmanager/js/gm';
 export default class GridManagerController {
-    constructor($scope, $document, $element, $compile) {
+    constructor($scope, $document, $element, $compile, $gridManager) {
         this._$element = $element;
         this._$document = $document;
         this._$compile = $compile;
         this._$scope = $scope;
+        this._$gridManager = $gridManager;
     }
     $onInit() {
         // 当前表格组件所在的域
@@ -18,7 +18,7 @@ export default class GridManagerController {
         this.option.compileAngularjs = compileList => {
             return new Promise(resolve => {
                 compileList.forEach(item => {
-                    const elScope = _parent.$new(false);
+                    const elScope = _parent.$new(false); // false 不隔离父级
                     elScope.row = item.row;
                     elScope.index = item.index;
                     const content = this._$compile(item.el)(elScope);
@@ -35,9 +35,9 @@ export default class GridManagerController {
         };
 
         table.GM(this.option, query => {
-            this.callback({query: query});
+            typeof(this.callback) === 'function' && this.callback({query: query});
+            this._$gridManager.setScope(table, _parent);
         });
-        GM.setScope(table, _parent);
     }
 
     /**
@@ -49,6 +49,10 @@ export default class GridManagerController {
         [].forEach.call(menuDomList, menuDom => {
             menuDom.parentNode.removeChild(menuDom);
         });
+
+        // 销毁实例
+        const table = this._$element[0].querySelector('table');
+        this._$gridManager.destroy(table);
     }
 }
-GridManagerController.$inject = ['$scope', '$document', '$element', '$compile'];
+GridManagerController.$inject = ['$scope', '$document', '$element', '$compile', '$gridManager'];
