@@ -1,6 +1,6 @@
 {
     "name": "gridmanager-angular-1.x",
-    "version": "0.0.29",
+    "version": "0.1.0",
     "description": "gridmanager by angular-1.x",
     "main": "js/gm-angular.js",
     "scripts": {
@@ -18,13 +18,12 @@
         "url": "https://github.com/baukh789/GridManager-Angular-1.x/issues"
     },
     "keywords": [
-        "vue",
         "gridmanager",
-        "vue-gridmanager",
+        "angular-gridmanager",
         "table",
-        "vue-table",
+        "angular-table",
         "grid",
-        "vue-grid",
+        "angular-grid",
         "component",
         "components"
     ],
