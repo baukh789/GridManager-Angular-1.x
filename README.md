@@ -27,17 +27,21 @@ npm install gridmanager-angular.1.x --save
 ```
 
 ## 项目中引用
-> 以内代码应该一般放在项目的index.js
-
+- es2015引入方式
 ```javascript
-import GridManager from 'gridmanager-angular-1.x';
+import gridManager from 'gridmanager-angular-1.x';
 import 'gridmanager-angular-1.x/css/gm-angular.css';
 export default angular
-	.module('myApp', [GridManager])
+	.module('myApp', [gridManager])
 	.controller('MainController', MainController)
 	.name;
 ```
 
+- 通过script标签引入
+```html
+<link rel="stylesheet" href="../node_modules/gridmanager-angular-1.x/css/gm-angular.css">
+<script src="../node_modules/gridmanager-angular-1.x/js/gm-angular.js"></script>
+```
 ### 示例
 ```html
 <grid-manager option="$ctrl.gmOptions" callback="$ctrl.gmCallback(query)"></grid-manager>

@@ -15,7 +15,7 @@ const GridManagerComponent = {
 };
 let name = null;
 try {
-    name = angular.module('gridManager');
+    name = angular.module('gridManager').name;
 } catch (e) {
     require('gridmanager');
     require('gridmanager/css/gm.css');
