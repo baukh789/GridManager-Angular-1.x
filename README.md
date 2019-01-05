@@ -220,6 +220,8 @@ angular
 ```
 
 ### 调用公开方法
+> 以下方法需要在已经存在gridManager实例的Angular环境下使用。
+
 ```javascript
 // 刷新
 $gridManager.refreshGrid('testAngular');
