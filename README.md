@@ -31,10 +31,6 @@ npm install gridmanager-angular.1.x --save
 ```javascript
 import gridManager from 'gridmanager-angular-1.x';
 import 'gridmanager-angular-1.x/css/gm-angular.css';
-export default angular
-	.module('myApp', [gridManager])
-	.controller('MainController', MainController)
-	.name;
 ```
 
 - 通过script标签引入
@@ -44,158 +40,194 @@ export default angular
 ```
 ### 示例
 ```html
-<grid-manager option="$ctrl.gmOptions" callback="$ctrl.gmCallback(query)"></grid-manager>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/gridmanager-angular-1.x/css/gm-angular.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+      <script src="https://unpkg.com/gridmanager-angular-1.x/js/gm-angular.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="AppController as vm">
+      <grid-manager option="option" callback="callback(query)"></grid-manager>
+    </body>
+</html>
 ```
 
 ```javascript
-export default class CustomerInfoCtrl {
-	constructor() {
-	    this.delectRowData() => {
-	        console.log('删除成功');
-	    };
+function AppController($window, $rootScope, $scope, $element, $gridManager){
+    $scope.testClick = (row) => {
+        console.log('click', row);
+    };
 
-        // 表格渲染回调函数
-        // query为gmOptions中配置的query
-        this.gmCallback = query => {
-            console.log(query);
+    // 常量: 搜索条件
+    $scope.TYPE_MAP = {
+        '1': 'HTML/CSS',
+        '2': 'nodeJS',
+        '3': 'javaScript',
+        '4': '前端鸡汤',
+        '5': 'PM Coffee',
+        '6': '前端框架',
+        '7': '前端相关'
+    };
+
+    $scope.searchForm = {
+        title: '',
+        info: ''
+    };
+
+    /**
+     * 搜索事件
+     */
+    $scope.onSearch = () => {
+        console.log('onSearch');
+        $gridManager.setQuery('testAngular', $scope.searchForm);
+    };
+
+    $scope.onReset = () => {
+        $scope.searchForm = {
+            title: '',
+            info: ''
         };
+    };
 
-	    // 表格所需配置项
-	    this.gmOptions = {
-	        // 当前表格的key, 必须存在，且同一页面中不能存在相同值
-            gridManagerName: 'test',
+    // 表格渲染回调函数
+    // query为gmOptions中配置的query
+    $scope.callback = function(query) {
+        console.log('callback => ', query);
+    };
 
-            // 数据来源, 详细使用请查阅[API ajax_data](http://gridmanager.lovejavascript.com/api/index.html#ajax_data)
-            ajax_data: function () {
-                return 'https://www.lovejavascript.com/blogManager/getBlogList';
-            },
+    $scope.option = {
+        gridManagerName: 'testAngular',
+        width: '100%',
+        height: '100%',
+        supportAjaxPage:true,
+        isCombSorting: true,
+        disableCache: false,
+        ajax_data: function () {
+            return 'https://www.lovejavascript.com/blogManager/getBlogList';
+        },
+        ajax_type: 'POST',
 
-            ajax_type: 'POST',
-
-            // 列配置, 详细使用请查阅[API columnData](http://gridmanager.lovejavascript.com/api/index.html#columnData)
-            columnData: [
-                {
-                    key: 'pic',
-                    remind: 'the pic',
-                    width: '110px',
-                    align: 'center',
-                    text: '缩略图',
-                    // 使用函数返回 dom node
-                    template: function(pic, rowObject) {
-                        var picNode = document.createElement('a');
-                        picNode.setAttribute('href', `https://www.lovejavascript.com/#!zone/blog/content.html?id=${rowObject.id}`);
-                        picNode.setAttribute('title', rowObject.title);
-                        picNode.setAttribute('target', '_blank');
-                        picNode.title = `点击阅读[${rowObject.title}]`;
-                        picNode.style.display = 'block';
-                        picNode.style.height = '58.5px';
-
-                        var imgNode = document.createElement('img');
-                        imgNode.style.width = '90px';
-                        imgNode.style.margin = '0 auto';
-                        imgNode.alt = rowObject.title;
-                        imgNode.src = `https://www.lovejavascript.com/${pic}`;
-
-                        picNode.appendChild(imgNode);
-                        return picNode;
-                    }
-                },{
-                    key: 'title',
-                    remind: 'the title',
-                    align: 'left',
-                    text: '标题',
-                    sorting: '',
-                    // 使用函数返回 ng template
-                    template: '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>'
-                },{
-                    key: 'type',
-                    remind: 'the type',
-                    text: '博文分类',
-                    align: 'center',
-                    width: '150px',
-                    sorting: '',
-                    // 表头筛选条件, 该值由用户操作后会将选中的值以{key: value}的形式覆盖至query参数内。非必设项
-                    filter: {
-                        // 筛选条件列表, 数组对象。格式: [{value: '1', text: 'HTML/CSS'}],在使用filter时该参数为必设项。
-                        option: [
-                            {value: '1', text: 'HTML/CSS'},
-                            {value: '2', text: 'nodeJS'},
-                            {value: '3', text: 'javaScript'},
-                            {value: '4', text: '前端鸡汤'},
-                            {value: '5', text: 'PM Coffee'},
-                            {value: '6', text: '前端框架'},
-                            {value: '7', text: '前端相关'}
-                        ],
-                        // 筛选选中项，字符串, 默认为''。 非必设项，选中的过滤条件将会覆盖query
-                        selected: '3',
-                        // 否为多选, 布尔值, 默认为false。非必设项
-                        isMultiple: true
-                    },
-                    template: <button type="button" cc-tooltip="'hello world'" tooltip-type="error-minor" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>
-                },{
-                    key: 'info',
-                    remind: 'the info',
-                    width: '300px',
-                    text: '简介'
-                },{
-                    key: 'username',
-                    remind: 'the username',
-                    align: 'center',
-                    width: '100px',
-                    text: '作者',
-                    template: '<a class="plugin-action" ng-href="https://github.com/{{row.username}}" target="_blank" title="去看看{{username}}的github">{{username}}</a>'
-                },{
-                    key: 'createDate',
-                    width: '130px',
-                    text: '创建时间',
-                    sorting: 'DESC',
-                    // 使用函数返回 htmlString
-                    template: function(createDate, rowObject){
-                        return new Date(createDate).toLocaleDateString();
-                    }
-                },{
-                    key: 'lastDate',
-                    width: '130px',
-                    text: '最后修改时间',
-                    sorting: '',
-                    // 使用函数返回 htmlString
-                    template: function(lastDate, rowObject){
-                        return new Date(lastDate).toLocaleDateString();
-                    }
-                },{
-                    key: 'action',
-                    remind: 'the action',
-                    width: '100px',
-                    align: 'center',
-                    text: '<span style="color: red">操作</span>',
-                    template: '<span class="plugin-action" ng-click="$ctrl.delectRowData(row, index)">删除</span>'
+        columnData: [
+            {
+                key: 'pic',
+                remind: 'the pic',
+                width: '110px',
+                align: 'center',
+                text: '缩略图',
+                // ng template
+                template: `<a target="_blank" style="display:block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
+                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}" alt="{{row.title}}">
+                            </a>`
+            },{
+                key: 'title',
+                remind: 'the title',
+                align: 'left',
+                text: '标题',
+                sorting: '',
+                // 使用函数返回 ng template
+                template: function() {
+                    return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>';
                 }
-            ]
-            // ...更多配置请参考API
-        };
-	}
+            },{
+                key: 'type',
+                remind: 'the type',
+                text: '博文分类',
+                align: 'center',
+                width: '150px',
+                sorting: '',
+                // 表头筛选条件, 该值由用户操作后会将选中的值以{key: value}的形式覆盖至query参数内。非必设项
+                filter: {
+                    // 筛选条件列表, 数组对象。格式: [{value: '1', text: 'HTML/CSS'}],在使用filter时该参数为必设项。
+                    option: [
+                        {value: '1', text: 'HTML/CSS'},
+                        {value: '2', text: 'nodeJS'},
+                        {value: '3', text: 'javaScript'},
+                        {value: '4', text: '前端鸡汤'},
+                        {value: '5', text: 'PM Coffee'},
+                        {value: '6', text: '前端框架'},
+                        {value: '7', text: '前端相关'}
+                    ],
+                    // 筛选选中项，字符串, 默认为''。 非必设项，选中的过滤条件将会覆盖query
+                    selected: '3',
+                    // 否为多选, 布尔值, 默认为false。非必设项
+                    isMultiple: true
+                },
+                // isShow: false,
+                template: `<button type="button" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`
+            },{
+                key: 'info',
+                remind: 'the info',
+                width: '300px',
+                text: '简介'
+            },{
+                key: 'username',
+                remind: 'the username',
+                align: 'center',
+                width: '100px',
+                text: '作者',
+                // 使用函数返回 dom string
+                template: `<a class="plugin-action" href="https://github.com/baukh789" target="_blank" title="去看看{{row.username}}的github">{{row.username}}</a>`
+            },{
+                key: 'createDate',
+                width: '130px',
+                text: '创建时间',
+                sorting: 'DESC',
+                // 使用函数返回 htmlString
+                template: function(createDate, rowObject){
+                    return new Date(createDate).toLocaleDateString();
+                }
+            },{
+                key: 'lastDate',
+                width: '130px',
+                text: '最后修改时间',
+                sorting: '',
+                // 使用函数返回 htmlString
+                template: function(lastDate, rowObject){
+                    return new Date(lastDate).toLocaleDateString();
+                }
+            },{
+                key: 'action',
+                remind: 'the action',
+                width: '100px',
+                align: 'center',
+                text: '<span style="color: red">操作</span>',
+                // 直接返回 htmlString
+                template: '<span class="plugin-action" ng-click="delectRowData(row, index)">删除</span>'
+            }
+        ]
+    };
+
+    /**
+     * 模拟删除
+     * @param row
+     * @param index
+     */
+    $scope.delectRowData = function(row, index) {
+        if(window.confirm(`确认要删除当前页第[${index}]条的['${row.title}]?`)){
+            console.log('----删除操作开始----');
+            $gridManager.refreshGrid('testAngular');
+            // $element[0].querySelector('table[grid-manager="testAngular"]').GM('refreshGrid');
+            console.log('数据没变是正常的, 因为这只是个示例,并不会真实删除数据.');
+            console.log('----删除操作完成----');
+        }
+    };
 }
+AppController.inject = ['$window', '$rootScope', '$scope', '$element', '$gridManager'];
+
+angular
+	.module('myApp', ['gridManager'])
+	.controller('AppController', AppController);
 ```
 
 ### 调用公开方法
-> GM对象挂在Element.prototype上，这里是通过angular方式获取table dom。无论通过哪种方式，只要获取到table dom就可通过GM函数调用方法。
-
 ```javascript
-const table = $element[0].querySelector('table[grid-manager="test"]'); // 通过$element进行获取
-const table2 = $document[0].querySelector('table[grid-manager="test"]'); // 通过$document进行获取
-const table2 = document.querySelector('table[grid-manager="test"]'); // 通过原生JS进行获取
-
 // 刷新
-table.GM('refreshGrid');
+$gridManager.refreshGrid('testAngular');
 
 // 更新查询条件
-table.GM('setQuery', {name: 'baukh'});
+$gridManager.setQuery('testAngular', {name: 'baukh'});
 
-const tableCtrl = function(){
-
-}
-
-// ...其它更多请直接访问API
+// ...其它更多请直接访问[API](http://gridmanager.lovejavascript.com/api/index.html)
 ```
 
 ### 查看当前版本
