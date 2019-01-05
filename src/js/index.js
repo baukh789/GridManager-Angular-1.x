@@ -1,6 +1,3 @@
-// import 'gridmanager';
-// import 'gridmanager/css/gm.css';
-
 import controller from './controller';
 
 const template = '<table></table>';
