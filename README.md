@@ -10,7 +10,6 @@
 > 该文档为原生GridManager的文档，angular-1.x版本除了在`columnData.text` `columnData.template` `topFullColumn.template`中可以使用angular模版外，其它使用方式相同。
 - [API](http://gridmanager.lovejavascript.com/api/index.html)
 
-
 ## Demo
 > 该示例为原生GridManager的示例，angular-1.x版本除了在`columnData.text` `columnData.template` `topFullColumn.template`中可以使用angular模版外，其它使用方式相同。
 - [简单的示例](http://gridmanager.lovejavascript.com/demo/index.html)
