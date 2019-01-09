@@ -30,7 +30,6 @@ npm install gridmanager-angular.1.x --save
 - es2015引入方式
 ```javascript
 import gridManager from 'gridmanager-angular-1.x';
-import 'gridmanager-angular-1.x/css/gm-angular.css';
 ```
 
 - 通过script标签引入
