@@ -12,7 +12,9 @@
 
 
 ## Demo
-- [带搜索的表格](http://gridmanager.lovejavascript.com/demo/index.html)
+> 该示例为原生GridManager的示例，angular-1.x版本除了在`columnData.text` `columnData.template` `topFullColumn.template`中可以使用angular模版外，其它使用方式相同。
+- [简单的示例](http://gridmanager.lovejavascript.com/demo/index.html)
+- [复杂的示例](http://develop.lovejavascript.com/node_modules/gridmanager/demo/index.html)
 
 ## Core code
 - [GridManager](https://github.com/baukh789/GridManager)
