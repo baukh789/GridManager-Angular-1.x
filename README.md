@@ -2,8 +2,8 @@
 > 基于 Angular 1.x 的 GridManager 封装, 用于便捷的在 Angular 中使用GridManager.
 
 [![Build Status](https://travis-ci.org/baukh789/GridManager.svg?branch=master&style=flat-square)](https://travis-ci.org/baukh789/GridManager)
-[![npm version](https://img.shields.io/npm/v/gridmanager.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager)
-[![npm downloads](https://img.shields.io/npm/dt/gridmanager.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager)
+[![npm version](https://img.shields.io/npm/v/gridmanager-angular-1.x.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager-angular-1.x)
+[![npm downloads](https://img.shields.io/npm/dt/gridmanager-angular-1.x.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager-angular-1.x)
 [![coverage](https://img.shields.io/codecov/c/github/baukh789/GridManager.svg?style=flat-square)](https://codecov.io/gh/baukh789/GridManager)
 
 ## API
