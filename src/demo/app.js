@@ -21,7 +21,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
 
     $scope.searchForm = {
         title: '',
-        info: ''
+        content: ''
     };
 
     /**
@@ -35,7 +35,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
     $scope.onReset = () => {
         $scope.searchForm = {
             title: '',
-            info: ''
+            content: ''
         };
     };
 

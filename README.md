@@ -1,18 +1,19 @@
-# GridManager Angular 1.x(开发中, 现仅作为参考)
+# GridManager Angular 1.x
 > 基于 Angular 1.x 的 GridManager 封装, 用于便捷的在 Angular 中使用GridManager.
 
 [![Build Status](https://travis-ci.org/baukh789/GridManager.svg?branch=master&style=flat-square)](https://travis-ci.org/baukh789/GridManager)
-[![npm version](https://img.shields.io/npm/v/gridmanager.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager)
-[![npm downloads](https://img.shields.io/npm/dt/gridmanager.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager)
+[![npm version](https://img.shields.io/npm/v/gridmanager-angular-1.x.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager-angular-1.x)
+[![npm downloads](https://img.shields.io/npm/dt/gridmanager-angular-1.x.svg?style=flat-square)](https://www.npmjs.com/package/gridmanager-angular-1.x)
 [![coverage](https://img.shields.io/codecov/c/github/baukh789/GridManager.svg?style=flat-square)](https://codecov.io/gh/baukh789/GridManager)
 
 ## API
 > 该文档为原生GridManager的文档，angular-1.x版本除了在`columnData.text` `columnData.template` `topFullColumn.template`中可以使用angular模版外，其它使用方式相同。
 - [API](http://gridmanager.lovejavascript.com/api/index.html)
 
-
 ## Demo
-- [带搜索的表格](http://gridmanager.lovejavascript.com/demo/index.html)
+> 该示例为原生GridManager的示例，angular-1.x版本除了在`columnData.text` `columnData.template` `topFullColumn.template`中可以使用angular模版外，其它使用方式相同。
+- [简单的示例](http://gridmanager.lovejavascript.com/demo/index.html)
+- [复杂的示例](http://develop.lovejavascript.com/node_modules/gridmanager/demo/index.html)
 
 ## Core code
 - [GridManager](https://github.com/baukh789/GridManager)
@@ -30,7 +31,6 @@ npm install gridmanager-angular.1.x --save
 - es2015引入方式
 ```javascript
 import gridManager from 'gridmanager-angular-1.x';
-import 'gridmanager-angular-1.x/css/gm-angular.css';
 ```
 
 - 通过script标签引入
