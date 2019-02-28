@@ -16,7 +16,15 @@ const config = {
 		js: './demo/app.js'
 	},
 
-	// 配置模块如何解析
+    // 文件导出的配置
+    output:{
+        // path: '/' ,
+        filename: "webpack-dev-file/js/app.js",
+        // publicPath 对于热替换（HMR）是必须的，让webpack知道在哪里载入热更新的模块（chunk）
+        publicPath: "/"
+    },
+
+    // 配置模块如何解析
 	resolve:{
 		extensions: [".js"] //当requrie的模块找不到时,添加这些后缀
 	},
@@ -30,7 +38,7 @@ const config = {
     plugins: [
         // 将样式文件 抽取至独立文件内
         new ExtractTextWebpackPlugin({
-            filename: 'webpack-dev-file/css/gm-angular.css',
+            filename: 'webpack-dev-file/css/app.css',
             disable: false,
             allChunks: true
         }),
@@ -42,15 +50,6 @@ const config = {
             }
         }),
     ],
-
-	// 文件导出的配置
-	output:{
-		// path: '/' ,
-		filename: "webpack-dev-file/js/gm-angular.js",
-		// publicPath 对于热替换（HMR）是必须的，让webpack知道在哪里载入热更新的模块（chunk）
-		publicPath: "/"
-	},
-
 	// 处理项目中的不同类型的模块
 	module: {
 		rules: genRules('src', true)
