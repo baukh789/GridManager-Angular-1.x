@@ -1,6 +1,6 @@
 {
     "name": "gridmanager-angular-1.x",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "gridmanager by angular-1.x",
     "main": "js/index.js",
     "scripts": {
@@ -28,7 +28,6 @@
         "components"
     ],
     "devDependencies": {
-        "gridmanager": "^2.7.7",
         "babel-cli": "6.24.1",
         "babel-core": "6.25.0",
         "babel-loader": "6.4.1",
@@ -39,6 +38,7 @@
         "css-loader": "^0.28.10",
         "express": "^4.16.3",
         "extract-text-webpack-plugin": "^2.1.2",
+        "gridmanager": "^2.7.8",
         "style-loader": "^0.20.3",
         "webpack": "^2.6.1",
         "webpack-dev-middleware": "^2.0.4"
