@@ -51,7 +51,6 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         height: '100%',
         supportAjaxPage:true,
         isCombSorting: true,
-        disableCache: false,
         ajax_data: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
@@ -97,7 +96,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                         {value: '6', text: '前端框架'},
                         {value: '7', text: '前端相关'}
                     ],
-                    // 筛选选中项，字符串, 默认为''。 非必设项，选中的过滤条件将会覆盖query
+                    // 筛选选中项，字符串, 未存在选中项时设置为''。 在此设置的选中的过滤条件将会覆盖query
                     selected: '3',
                     // 否为多选, 布尔值, 默认为false。非必设项
                     isMultiple: true
