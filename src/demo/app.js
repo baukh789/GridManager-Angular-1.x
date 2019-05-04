@@ -51,8 +51,13 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         height: '100%',
         supportAjaxPage:true,
         isCombSorting: true,
+        useRadio: true,
+        useRowCheck: true,
         ajax_data: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
+        },
+        checkedAfter: aa => {
+            console.log(aa);
         },
         ajax_type: 'POST',
 
