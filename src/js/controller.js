@@ -44,15 +44,15 @@ export default class GridManagerController {
      * 销毁钩子
      */
     $onDestroy() {
+        const gridManagerName = this.option.gridManagerName;
         // 清除右键菜单
-        const menuDomList = this._$document[0].querySelectorAll('.grid-menu[grid-master]');
+        const menuDomList = this._$document[0].querySelectorAll(`.grid-menu[grid-master=${gridManagerName}]`);
         [].forEach.call(menuDomList, menuDom => {
             menuDom.parentNode.removeChild(menuDom);
         });
 
         // 销毁实例
-        const table = this._$element[0].querySelector('table');
-        this._$gridManager.destroy(table);
+        this._$gridManager.destroy(gridManagerName);
     }
 }
 GridManagerController.$inject = ['$scope', '$document', '$element', '$compile', '$gridManager'];

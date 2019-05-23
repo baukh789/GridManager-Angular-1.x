@@ -32,10 +32,14 @@
     <br/>
 
     <div class="grid-main">
-        <grid-manager option="option" callback="callback(query)"></grid-manager>
+        <div ng-if="!destroyDisabled" style="height: 100%;">
+            <grid-manager option="option" callback="callback(query)"></grid-manager>
+        </div>
     </div>
 
     <div class="bottom-bar">
+        <button ng-click="onInit()">init</button>
+        <button ng-click="onDestroy()">destroy</button>
         <a href="https://github.com/baukh789/GridManager-Angular-1.x" target="_blank">查看源码</a>
     </div>
 </body>

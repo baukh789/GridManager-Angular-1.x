@@ -39,6 +39,16 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         };
     };
 
+    // 事件: 初始化
+    $scope.onInit = () => {
+        $scope.initDisabled = true;
+    };
+
+    // 事件: 销毁
+    $scope.onDestroy = () => {
+        $scope.destroyDisabled = true;
+    };
+
     // 表格渲染回调函数
     // query为gmOptions中配置的query
     $scope.callback = function(query) {
