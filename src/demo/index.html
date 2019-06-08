@@ -8,11 +8,6 @@
     <script src="../../node_modules/angular/angular.min.js"></script>
 
     <script src="/webpack-dev-file/js/app.js"></script>
-    <style>
-        .grid-main {
-            height: calc(100vh - 64px - 57px);
-        }
-    </style>
 </head>
 <body ng-app="myApp" ng-controller="AppController as vm">
     <div class="search-area">
@@ -29,7 +24,6 @@
             <button class="reset-action" ng-click="onReset()">重置</button>
         </div>
     </div>
-    <br/>
 
     <div class="grid-main">
         <div ng-if="!destroyDisabled" style="height: 100%;">

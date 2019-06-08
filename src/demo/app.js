@@ -41,7 +41,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
 
     // 事件: 初始化
     $scope.onInit = () => {
-        $scope.initDisabled = true;
+        $scope.destroyDisabled = false;
     };
 
     // 事件: 销毁
@@ -61,8 +61,17 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         height: '100%',
         supportAjaxPage:true,
         isCombSorting: true,
-        useRadio: true,
-        useRowCheck: true,
+        // firstLoading: false,
+        emptyTemplate: '<section style="text-align: center" ng-bind="\'这个Angular 1.x表格, 什么数据也没有\'"></section>',
+        topFullColumn: {
+            template:  (row, index) => {
+                return `<div style="padding: 12px; text-align: center">
+                    {{index}} - 快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源,
+                    <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>
+                    github
+                </div>`;
+            }
+        },
         ajax_data: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
@@ -116,8 +125,8 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                     // 否为多选, 布尔值, 默认为false。非必设项
                     isMultiple: true
                 },
-                // isShow: false,
-                template: `<button type="button" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>`
+                // ng template
+                template: '<button type="button" ng-click="testClick(row)" ng-bind="TYPE_MAP[row.type]"></button>'
             },{
                 key: 'info',
                 remind: 'the info',
@@ -154,11 +163,16 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 remind: 'the action',
                 width: '100px',
                 align: 'center',
-                text: '<span style="color: red">操作</span>',
+                disableCustomize: true,
+                text: '<span style="color: red" ng-click="actionAlert()">操作</span>',
                 // 直接返回 htmlString
                 template: '<span class="plugin-action" ng-click="delectRowData(row, index)">删除</span>'
             }
         ]
+    };
+
+    $scope.actionAlert = function() {
+        alert('操作栏th是由ng模板渲染的');
     };
 
     /**
