@@ -53,6 +53,7 @@ import gridManager from 'gridmanager-angular-1.x';
 <link rel="stylesheet" href="../node_modules/gridmanager-angular-1.x/css/gm-angular.css">
 <script src="../node_modules/gridmanager-angular-1.x/js/gm-angular.js"></script>
 ```
+
 ### 示例
 ```html
 <html>
@@ -235,7 +236,7 @@ angular
 ```
 
 ### 调用公开方法
-> 以下方法需要在已经存在gridManager实例的Angular环境下使用。
+> 通过依赖注入的方式，将$gridManager注入到Controller。
 
 ```javascript
 // 刷新
