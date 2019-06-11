@@ -96,18 +96,15 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 remind: 'the title',
                 align: 'left',
                 text: '标题',
-                sorting: '',
                 // 使用函数返回 ng template
                 template: function() {
                     return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>';
                 }
             },{
                 key: 'type',
-                remind: 'the type',
                 text: '博文分类',
                 align: 'center',
                 width: '150px',
-                sorting: '',
                 // 表头筛选条件, 该值由用户操作后会将选中的值以{key: value}的形式覆盖至query参数内。非必设项
                 filter: {
                     // 筛选条件列表, 数组对象。格式: [{value: '1', text: 'HTML/CSS'}],在使用filter时该参数为必设项。
