@@ -5,7 +5,9 @@
     "main": "js/index.js",
     "scripts": {
         "start": "node server",
-        "build": "./scripts/build.sh"
+        "build": "./scripts/build.sh",
+        "version": "npm run build && npm publish dist",
+        "postversion": "git push && git push --tags"
     },
     "repository": {
         "type": "git",
