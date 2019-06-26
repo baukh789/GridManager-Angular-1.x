@@ -118,10 +118,10 @@ function AppController($window, $rootScope, $scope, $element, $gridManager){
         supportAjaxPage:true,
         isCombSorting: true,
         disableCache: false,
-        ajax_data: function () {
+        ajaxData: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
-        ajax_type: 'POST',
+        ajaxType: 'POST',
 
         columnData: [
             {

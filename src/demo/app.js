@@ -72,13 +72,13 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 </div>`;
             }
         },
-        ajax_data: function () {
+        ajaxData: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
         checkedAfter: aa => {
             console.log(aa);
         },
-        ajax_type: 'POST',
+        ajaxType: 'POST',
 
         columnData: [
             {
