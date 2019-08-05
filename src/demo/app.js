@@ -61,12 +61,13 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         height: '100%',
         supportAjaxPage:true,
         isCombSorting: true,
+        disableCache: false,
         // firstLoading: false,
         emptyTemplate: '<section style="text-align: center" ng-bind="\'这个Angular 1.x表格, 什么数据也没有\'"></section>',
         topFullColumn: {
             template:  (row, index) => {
                 return `<div style="padding: 12px; text-align: center">
-                    <span ng-bind="index"></span> - 快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源,
+                    快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源,
                     <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>
                     github
                 </div>`;
@@ -163,7 +164,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 disableCustomize: true,
                 text: '<span style="color: red" ng-click="actionAlert()">操作</span>',
                 // 直接返回 htmlString
-                template: '<span class="plugin-action" ng-click="delectRowData(row, index)">删除</span>'
+                template: '<span class="plugin-action" ng-click="editRowData(row, index)">编辑</span>'
             }
         ]
     };
@@ -173,17 +174,11 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
     };
 
     /**
-     * 模拟删除
+     * 模拟编辑
      * @param row
      * @param index
      */
-    $scope.delectRowData = function(row, index) {
-        if(window.confirm(`确认要删除当前页第[${index}]条的['${row.title}]?`)){
-            console.log('----删除操作开始----');
-            $gridManager.refreshGrid('testAngular');
-            // $element[0].querySelector('table[grid-manager="testAngular"]').GM('refreshGrid');
-            console.log('数据没变是正常的, 因为这只是个示例,并不会真实删除数据.');
-            console.log('----删除操作完成----');
-        }
+    $scope.editRowData = function(row, index) {
+        row.title = row.title + '(编辑于' + new Date().toLocaleDateString() +')';
     };
 }]);
