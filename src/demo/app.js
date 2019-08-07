@@ -64,15 +64,15 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         disableCache: false,
         // firstLoading: false,
         emptyTemplate: '<section style="text-align: center" ng-bind="\'这个Angular 1.x表格, 什么数据也没有\'"></section>',
-        topFullColumn: {
-            template:  (row, index) => {
-                return `<div style="padding: 12px; text-align: center">
-                    快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源,
-                    <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>
-                    github
-                </div>`;
-            }
-        },
+        // topFullColumn: {
+        //     template:  (row, index) => {
+        //         return `<div style="padding: 12px; text-align: center">
+        //             快速、灵活的对Table标签进行实例化，让Table标签充满活力。该项目已开源,
+        //             <a target="_blank" href="https://github.com/baukh789/GridManager">点击进入</a>
+        //             github
+        //         </div>`;
+        //     }
+        // },
         ajaxData: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
