@@ -46,6 +46,6 @@
     },
     "dependencies": {
         "angular": "^1.7.5",
-        "gridmanager": "^2.9.0"
+        "gridmanager": "^2.9.1"
     }
 }
