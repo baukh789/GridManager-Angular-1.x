@@ -90,7 +90,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 text: '缩略图',
                 // ng template
                 template: `<a target="_blank" style="display:block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
-                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}" alt="{{row.title}}">
+                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}" alt="{{row.title}}"/>
                             </a>`
             },{
                 key: 'title',
