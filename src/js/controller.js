@@ -21,6 +21,7 @@ export default class GridManagerController {
                     const elScope = _parent.$new(false); // false 不隔离父级
                     elScope.row = item.row;
                     elScope.index = item.index;
+                    elScope.key = item.key;
                     const content = this._$compile(item.el)(elScope);
 
                     item.el.replaceWith(content[0]);

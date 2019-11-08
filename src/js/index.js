@@ -21,6 +21,7 @@ try {
     name = gridManager
         .component('gridManager', GridManagerComponent)
         .value('$gridManager', window.GridManager)
+        .value('$jTool', window.jTool)
         .name;
 
     gridManager.version = process.env.VERSION;
