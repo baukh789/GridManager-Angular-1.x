@@ -35,7 +35,7 @@ export default class GridManagerController {
             });
         };
 
-        table.GM(this.option, query => {
+        new this._$gridManager(table, this.option, query => {
             typeof(this.callback) === 'function' && this.callback({query: query});
             this._$gridManager.setScope(table, _parent);
         });

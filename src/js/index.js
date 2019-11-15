@@ -1,4 +1,6 @@
 import controller from './controller';
+import $gridManager, { jTool } from 'gridmanager';
+import 'gridmanager/css/gm.css';
 
 const template = '<table></table>';
 const GridManagerComponent = {
@@ -10,21 +12,15 @@ const GridManagerComponent = {
         callback: '&'
     }
 };
-let name = null;
-try {
-    name = angular.module('gridManager').name;
-} catch (e) {
-    require('gridmanager');
-    require('gridmanager/css/gm.css');
-    const gridManager = angular.module('gridManager', []);
+const gridManagerModuel = angular.module('gridManager', []);
 
-    name = gridManager
-        .component('gridManager', GridManagerComponent)
-        .value('$gridManager', window.GridManager)
-        .value('$jTool', window.jTool)
-        .name;
+let name = gridManagerModuel
+    .component('gridManager', GridManagerComponent)
+    .value('$gridManager', $gridManager)
+    .value('$jTool', jTool)
+    .name;
 
-    gridManager.version = process.env.VERSION;
-}
+gridManagerModuel.version = process.env.VERSION;
 
+export { $gridManager, jTool };
 export default name;
