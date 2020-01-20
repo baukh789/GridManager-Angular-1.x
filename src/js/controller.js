@@ -2,9 +2,8 @@
  * Created by baukh on 18/3/8.
  */
 export default class GridManagerController {
-    constructor($scope, $document, $element, $compile, $gridManager) {
+    constructor($scope, $element, $compile, $gridManager) {
         this._$element = $element;
-        this._$document = $document;
         this._$compile = $compile;
         this._$scope = $scope;
         this._$gridManager = $gridManager;
@@ -37,7 +36,6 @@ export default class GridManagerController {
 
         new this._$gridManager(table, this.option, query => {
             typeof(this.callback) === 'function' && this.callback({query: query});
-            this._$gridManager.setScope(table, _parent);
         });
     }
 
@@ -49,4 +47,4 @@ export default class GridManagerController {
         this._$gridManager.destroy(this.option.gridManagerName);
     }
 }
-GridManagerController.$inject = ['$scope', '$document', '$element', '$compile', '$gridManager'];
+GridManagerController.$inject = ['$scope', '$element', '$compile', '$gridManager'];
