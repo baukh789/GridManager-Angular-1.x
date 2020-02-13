@@ -62,6 +62,9 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         supportAjaxPage:true,
         isCombSorting: true,
         disableCache: false,
+        supportMoveRow: true,
+        // 图标跟随文本
+        isIconFollowText: true,
         // firstLoading: false,
         emptyTemplate: '<section style="text-align: center" ng-bind="\'这个Angular 1.x表格, 什么数据也没有\'"></section>',
         // topFullColumn: {
@@ -84,7 +87,12 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         columnData: [
             {
                 key: 'pic',
-                remind: 'the pic',
+                remind: {
+                    text: 'the pic',
+                    style: {
+                        color: 'yellow'
+                    }
+                },
                 width: '110px',
                 align: 'center',
                 text: '缩略图',
