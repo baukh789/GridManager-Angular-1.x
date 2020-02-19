@@ -17,14 +17,17 @@ export default class GridManagerController {
 
         this.option.compileAngularjs = compileList => {
             return new Promise(resolve => {
+                let elScope = null;
+                let el = null;
+                const $new = _parent.$new.bind(_parent);
+                const $compile = this._$compile;
                 compileList.forEach(item => {
-                    const elScope = _parent.$new(false); // false 不隔离父级
+                    elScope = $new(false); // false 不隔离父级
                     elScope.row = item.row;
                     elScope.index = item.index;
                     elScope.key = item.key;
-                    const content = this._$compile(item.el)(elScope);
-
-                    item.el.replaceWith(content[0]);
+                    el = item.el;
+                    el.replaceWith($compile(el)(elScope)[0]);
                 });
 
                 // 延时触发angular 脏检查

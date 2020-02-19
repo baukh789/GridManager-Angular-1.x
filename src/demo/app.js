@@ -2,6 +2,58 @@
  * Created by baukh on 18/4/11.
  */
 import gridManagerModule from '../js/index';
+
+// 静态数据
+
+const getData = num => {
+    const data = [];
+    let child = [];
+
+    for (let i = 1; i<= num; i++) {
+        child = [];
+        for (let j = 1; j<= 40; j++) {
+            child.push({
+                "id": parseInt((i.toString() + j.toString()), 10),
+                "pic": '/upload/blog/pic/6717_%E5%AF%BC%E5%87%BA.png',
+                "author": "33",
+                "praiseNumber": "0",
+                "status": "1",
+                "readNumber": "111",
+                "title": "测试数据" + j,
+                "subtitle": "测试数据" + j,
+                "type": j % 5,
+                "info": "野生前端程序",
+                "createDate": 1579350185000,
+                "lastDate": 1579662679374,
+                "commentSum": 0,
+                "username": "拭目以待"
+            });
+        }
+        data.push({
+            "id": i,
+            "pic": '/upload/blog/pic/6717_%E5%AF%BC%E5%87%BA.png',
+            "author": "33",
+            "praiseNumber": "0",
+            "status": "1",
+            "readNumber": "111",
+            "title": "测试数据" + i,
+            "subtitle": "测试数据" + i,
+            "type": i % 5,
+            "info": "野生前端程序",
+            "createDate": 1579350185000,
+            "lastDate": 1579662679374,
+            "commentSum": 0,
+            "username": "拭目以待",
+            "children": child
+        });
+    }
+
+    return data;
+};
+const ajaxData1 = {
+    "data": getData(20),
+    "totals": 20
+};
 var app = angular.module("myApp", [gridManagerModule]);
 app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', '$gridManager', function($window, $rootScope, $scope, $element, $gridManager) {
     $scope.testClick = (row) => {
@@ -51,8 +103,9 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
 
     // 表格渲染回调函数
     // query为gmOptions中配置的query
+    let now = Date.now();
     $scope.callback = function(query) {
-        console.log('callback => ', query);
+        console.log('callback => ', Date.now() - now);
     };
 
     $scope.option = {
@@ -76,9 +129,11 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         //         </div>`;
         //     }
         // },
+        // supportTreeData: true,
         ajaxData: function () {
             return 'https://www.lovejavascript.com/blogManager/getBlogList';
         },
+        // ajaxData: ajaxData1,
         checkedAfter: aa => {
             console.log(aa);
         },
@@ -93,12 +148,12 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                         color: 'yellow'
                     }
                 },
-                width: '110px',
+                width: '130px',
                 align: 'center',
                 text: '缩略图',
                 // ng template
-                template: `<a target="_blank" style="display:block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
-                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}" alt="{{row.title}}"/>
+                template: `<a target="_blank" style="display:inline-block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
+                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}"/>
                             </a>`
             },{
                 key: 'title',
@@ -107,7 +162,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
                 text: '标题',
                 // 使用函数返回 ng template
                 template: function() {
-                    return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">{{row.title}}</a>';
+                    return '<a class="plugin-action" target="_blank" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]" ng-bind="row.title"></a>';
                 }
             },{
                 key: 'type',
