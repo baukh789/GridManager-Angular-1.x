@@ -8,6 +8,28 @@ export default class GridManagerController {
         this._$compile = $compile;
         this._$scope = $scope;
         this._$gridManager = $gridManager;
+
+        // 存储 angular scope
+        this.angularCache = [];
+    }
+
+    /**
+     * 清除已经不存在的 angular scope
+     */
+    updateCache() {
+        this.angularCache = this.angularCache.filter(item => {
+            const { el, scope } = item;
+            if (!window.getComputedStyle(el).display) {
+                // 清除framework.send 后存在操作的DOM节点
+                const tree = el.querySelector('[tree-element]');
+                tree && el.removeChild(tree);
+
+                // 移除angular node
+                scope.$destroy();
+                el.remove();
+            }
+            return !!window.getComputedStyle(el).display;
+        });
     }
     $onInit() {
         // 当前表格组件所在的域
@@ -15,19 +37,23 @@ export default class GridManagerController {
 
         const table = this._$element[0].querySelector('table');
 
-        this.option.compileAngularjs = compileList => {
+        const { _$gridManager, option, callback } = this;
+        option.compileAngularjs = compileList => {
+            this.updateCache();
             return new Promise(resolve => {
-                let elScope = null;
+                let scope = null;
                 let el = null;
                 const $new = _parent.$new.bind(_parent);
                 const $compile = this._$compile;
                 compileList.forEach(item => {
-                    elScope = $new(false); // false 不隔离父级
-                    elScope.row = item.row;
-                    elScope.index = item.index;
-                    elScope.key = item.key;
+                    scope = $new(false); // false 不隔离父级
+                    scope.row = item.row;
+                    scope.index = item.index;
+                    scope.key = item.key;
                     el = item.el;
-                    el.replaceWith($compile(el)(elScope)[0]);
+                    el.replaceWith($compile(el)(scope)[0]);
+
+                    this.angularCache.push({el, scope});
                 });
 
                 // 延时触发angular 脏检查
@@ -38,9 +64,9 @@ export default class GridManagerController {
             });
         };
 
-        new this._$gridManager(table, this.option, query => {
-            typeof(this.callback) === 'function' && this.callback({query: query});
-            this._$gridManager.setScope(table, _parent);
+        new _$gridManager(table, option, query => {
+            typeof(callback) === 'function' && callback({query: query});
+            _$gridManager.setScope(table, _parent);
         });
     }
 
