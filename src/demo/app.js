@@ -111,6 +111,9 @@ const getColumnData = () => {
             width: '300px',
             text: '简介'
         },{
+            key: 'readNumber',
+            text: '阅读',
+        },{
             key: 'username',
             remind: 'the username',
             align: 'center',
@@ -217,6 +220,16 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         },
         checkboxConfig: {
             fixed: 'left'
+        },
+        summaryHandler: data => {
+            let readNumber = 0;
+            data.forEach(item => {
+                readNumber += item.readNumber;
+            });
+            return {
+                title: '<span style="color: red" ng-click="actionAlert()">测试 angular template</span>',
+                readNumber
+            }
         },
         // 图标跟随文本
         isIconFollowText: true,
