@@ -179,7 +179,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
      */
     $scope.onSearch = () => {
         console.log('onSearch');
-        $gridManager.setQuery('testAngular', $scope.searchForm);
+        $gridManager.setQuery('test', $scope.searchForm);
     };
 
     $scope.onReset = () => {
