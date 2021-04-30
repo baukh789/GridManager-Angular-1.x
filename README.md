@@ -46,7 +46,7 @@ ES2015 + webpack + angular 1.x + GridManager
 
 ## 安装
 ```
-npm install gridmanager-angular.1.x --save
+npm install gridmanager-angular-1.x --save
 ```
 
 ## 项目中引用
