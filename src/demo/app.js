@@ -215,6 +215,7 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         isCombSorting: true,
         disableCache: false,
         supportMoveRow: true,
+        useCellFocus: true,
         autoOrderConfig: {
             fixed: 'left'
         },

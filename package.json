@@ -46,10 +46,9 @@
         "webpack": "^4.31.0",
         "webpack-bundle-analyzer": "^3.3.2",
         "webpack-cli": "^3.3.2",
-        "webpack-dev-middleware": "^3.7.0"
-    },
-    "dependencies": {
+        "webpack-dev-middleware": "^3.7.0",
         "angular": "^1.7.5",
-        "gridmanager": "^2.15.1"
-    }
+        "gridmanager": "^2.15.2"
+    },
+    "dependencies": {}
 }
