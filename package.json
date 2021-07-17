@@ -1,6 +1,6 @@
 {
     "name": "gridmanager-angular-1.x",
-    "version": "1.9.3",
+    "version": "1.10.0",
     "description": "gridmanager by angular-1.x",
     "main": "js/gm-angular.js",
     "scripts": {
