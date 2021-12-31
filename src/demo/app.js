@@ -69,8 +69,8 @@ const getColumnData = () => {
             align: 'center',
             text: '缩略图',
             // ng template
-            template: `<a target="_blank" style="display:inline-block; height:58.5px;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
-                                <img style="width:90px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}"/>
+            template: `<a target="_blank" style="display:inline-block;" ng-href="https://www.lovejavascript.com/#!zone/blog/content.html?id={{row.id}}" title="点击阅读[{{row.title}}]">
+                                <img style="width:90px;height:58.5px;margin:0 auto;" ng-src="https://www.lovejavascript.com/{{row.pic}}"/>
                             </a>`
         },{
             key: 'title',
@@ -99,7 +99,7 @@ const getColumnData = () => {
                     {value: '7', text: '前端相关'}
                 ],
                 // 筛选选中项，字符串, 未存在选中项时设置为''。 在此设置的选中的过滤条件将会覆盖query
-                selected: '3',
+                selected: '',
                 // 否为多选, 布尔值, 默认为false。非必设项
                 isMultiple: true
             },
@@ -211,6 +211,9 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         gridManagerName: 'test',
         width: '100%',
         height: '100%',
+        virtualScroll: {
+            useVirtualScroll: true
+        },
         supportAjaxPage:true,
         isCombSorting: true,
         disableCache: false,
@@ -222,16 +225,16 @@ app.controller('AppController', ['$window', '$rootScope', '$scope', '$element', 
         checkboxConfig: {
             fixed: 'left'
         },
-        summaryHandler: data => {
-            let readNumber = 0;
-            data.forEach(item => {
-                readNumber += item.readNumber;
-            });
-            return {
-                title: '<span style="color: red" ng-click="actionAlert()">测试 angular template</span>',
-                readNumber
-            }
-        },
+        // summaryHandler: data => {
+        //     let readNumber = 0;
+        //     data.forEach(item => {
+        //         readNumber += item.readNumber;
+        //     });
+        //     return {
+        //         title: '<span style="color: red" ng-click="actionAlert()">测试 angular template</span>',
+        //         readNumber
+        //     }
+        // },
         // 图标跟随文本
         isIconFollowText: true,
         // firstLoading: false,
