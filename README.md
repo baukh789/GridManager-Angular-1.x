@@ -1,4 +1,4 @@
-# GridManager Angular 1.x
+# GridManager Angular 1.x[自3.0开始, 该库已与gridmanager合并]
 > 基于 Angular 1.x 的 GridManager 封装, 用于便捷的在 Angular 中使用GridManager.
 
 ![image](https://s2.ax1x.com/2019/04/16/AxA4xK.png)
